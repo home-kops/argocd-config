@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: network
+  namespace: devops-tools
+spec:
+  generators:
+  - list:
+      elements:
+      - name: traefik
+        path: ./traefik
+        plugin: argocd-vault-plugin-helm
+        helmRelease: traefik
+        helmChartUrl: https://traefik.github.io/charts
+      - name: cert-manager
+        path: ./certmanager
+        plugin: argocd-vault-plugin-helm
+        helmRelease: cert-manager
+        helmChartUrl: https://charts.jetstack.io
+      - name: metallb
+        path: ./metallb
+        plugin: argocd-vault-plugin-kustomize
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-network.git
+        targetRevision: main
+        path: '{{path}}'
+        plugin:
+          name: '{{plugin}}'
+          env:
+          - name: HELM_RELEASE
+            value: '{{helmRelease}}'
+          - name: HELM_CHART
+            value: '{{helmChartUrl}}'
+          - name: HELM_ARGS
+            value: -f values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: network
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

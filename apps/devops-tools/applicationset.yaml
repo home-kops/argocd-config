@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: devops-tools
+  namespace: devops-tools
+spec:
+  generators:
+  - list:
+      elements:
+      - name: argocd
+        path: ./argocd
+      - name: jenkins
+        path: ./jenkins
+      - name: renovate
+        path: ./renovate
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-devops-tools.git
+        targetRevision: main
+        path: '{{path}}'
+        plugin:
+          name: argocd-vault-plugin-kustomize
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: devops-tools
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

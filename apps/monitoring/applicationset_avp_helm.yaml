@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring-avp-helm
+  namespace: devops-tools
+spec:
+  generators:
+  - list:
+      elements:
+      - name: grafana
+        path: ./grafana
+        helmRelease: grafana
+        helmChartUrl: https://grafana.github.io/helm-charts
+        helmArgs: -f values.yaml -f dashboards/kubernetes.yaml
+      - name: alloy
+        path: ./alloy
+        helmRelease: grafana
+        helmChartUrl: https://grafana.github.io/helm-charts
+        helmArgs: -f values.yaml
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-monitoring.git
+        targetRevision: main
+        path: '{{path}}'
+        plugin:
+          name: argocd-vault-plugin-helm
+          env:
+          - name: HELM_RELEASE
+            value: '{{helmRelease}}'
+          - name: HELM_CHART
+            value: '{{helmChartUrl}}'
+          - name: HELM_ARGS
+            value: '{{helmArgs}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: monitoring
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
