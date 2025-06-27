@@ -6,12 +6,12 @@ metadata:
 spec:
   generators:
   - list:
-      elements:
-      - name: falco
-        path: ./falco
-        helmRelease: falcosecurity
-        helmChartUrl: https://falcosecurity.github.io/charts
-        helmArgs: -f values.yaml
+      elements: []
+#      - name: falco
+#        path: ./falco
+#        helmRelease: falcosecurity
+#        helmChartUrl: https://falcosecurity.github.io/charts
+#        helmArgs: -f values.yaml
   template:
     metadata:
       name: '{{name}}'
