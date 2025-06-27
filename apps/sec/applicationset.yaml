@@ -7,8 +7,8 @@ spec:
   generators:
   - list:
       elements:
-      - name: falcosecurity
-        path: ./falcosecurity
+      - name: falco
+        path: ./falco
         helmRelease: falcosecurity
         helmChartUrl: https://falcosecurity.github.io/charts
         helmArgs: -f values.yaml
