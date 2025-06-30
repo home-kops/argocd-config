@@ -7,8 +7,11 @@ spec:
   generators:
   - list:
       elements:
-      - name: kubebench
-        path: ./kubebench
+      - name: falco
+        path: ./falco
+        helmRelease: falcosecurity
+        helmChartUrl: https://falcosecurity.github.io/charts
+        helmArgs: -f values.yaml
   template:
     metadata:
       name: '{{name}}'
@@ -18,6 +21,15 @@ spec:
         repoURL: https://github.com/home-kops/k8s-sec.git
         targetRevision: main
         path: '{{path}}'
+        plugin:
+          name: argocd-vault-plugin-helm
+          env:
+          - name: HELM_RELEASE
+            value: '{{helmRelease}}'
+          - name: HELM_CHART
+            value: '{{helmChartUrl}}'
+          - name: HELM_ARGS
+            value: '{{helmArgs}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: sec
