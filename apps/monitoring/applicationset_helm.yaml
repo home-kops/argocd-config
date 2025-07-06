@@ -17,11 +17,6 @@ spec:
         helmRelease: prometheus
         helmChartUrl: https://prometheus-community.github.io/helm-charts
         helmChartVersion: 27.22.0
-      - name: crowdsec
-        path: ./crowdsec
-        helmRelease: crowdsec
-        helmChartUrl: https://crowdsecurity.github.io/helm-charts
-        helmChartVersion: 0.19.4
   template:
     metadata:
       name: '{{name}}'

@@ -17,6 +17,11 @@ spec:
         helmRelease: grafana
         helmChartUrl: https://grafana.github.io/helm-charts
         helmArgs: -f values.yaml
+      - name: crowdsec
+        path: ./crowdsec
+        helmRelease: crowdsec
+        helmChartUrl: https://crowdsecurity.github.io/helm-charts
+        helmArgs: -f values.yaml
   template:
     metadata:
       name: '{{name}}'
