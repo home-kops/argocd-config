@@ -7,6 +7,11 @@ spec:
   generators:
   - list:
       elements:
+      - name: jackett
+        path: ./jackett
+        helmRelease: ""
+        helmChartUrl: ""
+        helmArgs: -f values.yaml
       - name: qbittorrent
         path: ./qbittorrent
         helmRelease: ""
