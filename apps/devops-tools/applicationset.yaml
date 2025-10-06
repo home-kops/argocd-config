@@ -9,8 +9,6 @@ spec:
       elements:
       - name: argocd
         path: ./argocd
-      - name: jenkins
-        path: ./jenkins
       - name: renovate
         path: ./renovate
   template:
