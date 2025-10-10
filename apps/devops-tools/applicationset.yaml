@@ -25,7 +25,6 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: devops-tools
-      project: '{{name}}'
       syncPolicy:
         automated:
           prune: true
