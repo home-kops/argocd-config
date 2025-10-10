@@ -7,10 +7,17 @@ spec:
   generators:
   - list:
       elements:
+      - name: arc-runners
+        path: ./arcrunners
+        plugin: argocd-vault-plugin-helm
+        helmRelease: gha-runner-scale-set
+        helmChartUrl: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
       - name: argocd
         path: ./argocd
+        plugin: argocd-vault-plugin-kustomize
       - name: renovate
         path: ./renovate
+        plugin: argocd-vault-plugin-kustomize
   template:
     metadata:
       name: '{{name}}'
@@ -21,7 +28,14 @@ spec:
         targetRevision: main
         path: '{{path}}'
         plugin:
-          name: argocd-vault-plugin-kustomize
+          name: '{{plugin}}'
+          env:
+          - name: HELM_RELEASE
+            value: '{{helmRelease}}'
+          - name: HELM_CHART
+            value: '{{helmChartUrl}}'
+          - name: HELM_ARGS
+            value: -f values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: devops-tools
