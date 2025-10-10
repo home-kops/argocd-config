@@ -7,8 +7,6 @@ spec:
   generators:
   - list:
       elements:
-      - name: arc
-        path: ./arc
       - name: argocd
         path: ./argocd
       - name: renovate
