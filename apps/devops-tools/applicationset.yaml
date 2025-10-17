@@ -9,13 +9,13 @@ spec:
       elements:
       - name: gha-scale-set-controller
         path: .
-        plugin: argocd-vault-plugin-helm
+        plugin: argocd-vault-plugin-helm-oci
         helmRelease: gha-runner-scale-set-controller
         helmChartUrl: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
         helmArgs: ''
       - name: gha-scale-set
         path: ./arcrunners
-        plugin: argocd-vault-plugin-helm
+        plugin: argocd-vault-plugin-helm-oci
         helmRelease: gha-runner-scale-set
         helmChartUrl: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
         helmArgs: '-f values.yaml'
