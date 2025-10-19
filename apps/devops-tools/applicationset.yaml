@@ -15,10 +15,7 @@ spec:
         helmArgs: ''
       - name: gha-scale-set
         path: ./arcrunners
-        plugin: argocd-vault-plugin-helm-oci
-        helmRelease: gha-runner-scale-set
-        helmChartUrl: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
-        helmArgs: '-f values.yaml'
+        plugin: argocd-vault-plugin-kustomize
       - name: argocd
         path: ./argocd
         plugin: argocd-vault-plugin-kustomize
