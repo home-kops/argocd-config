@@ -9,7 +9,7 @@ spec:
       elements:
       - name: traefik
         path: ./traefik
-      - name: cert-manager
+      - name: certmanager
         path: ./certmanager
       - name: metallb
         path: ./metallb
