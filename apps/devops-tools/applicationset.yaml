@@ -13,15 +13,6 @@ spec:
         helmRelease: gha-runner-scale-set-controller
         helmChartUrl: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
         helmArgs: ''
-      - name: gha-scale-set
-        path: ./arcrunners
-        plugin: argocd-vault-plugin-kustomize
-      - name: argocd
-        path: ./argocd
-        plugin: argocd-vault-plugin-kustomize
-      - name: renovate
-        path: ./renovate
-        plugin: argocd-vault-plugin-kustomize
   template:
     metadata:
       name: '{{name}}'

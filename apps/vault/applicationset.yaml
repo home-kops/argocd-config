@@ -7,9 +7,6 @@ spec:
   generators:
   - list:
       elements:
-      - name: vault
-        path: ./vault
-        plugin: argocd-vault-plugin-kustomize
       - name: unsealer
         path: ./unsealer
         plugin: argocd-vault-plugin-helm

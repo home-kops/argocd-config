@@ -1,0 +1,64 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: homelab
+spec:
+  generators:
+  - list:
+      elements:
+      - name: gha-scale-set
+        repo: https://github.com/home-kops/k8s-devops-tools.git
+        path: ./arcrunners
+        namespace: devops-tools
+      - name: argocd
+        repo: https://github.com/home-kops/k8s-devops-tools.git
+        path: ./argocd
+        namespace: devops-tools
+      - name: renovate
+        repo: https://github.com/home-kops/k8s-devops-tools.git
+        path: ./renovate
+        namespace: devops-tools
+      - name: jellyfin
+        repo: https://github.com/home-kops/k8s-media.git
+        path: ./jellyfin
+        namespace: media
+      - name: calibre
+        repo: https://github.com/home-kops/k8s-media.git
+        path: ./calibre
+        namespace: media
+      - name: traefik
+        repo: https://github.com/home-kops/k8s-network.git
+        path: ./traefik
+        namespace: network
+      - name: certmanager
+        repo: https://github.com/home-kops/k8s-network.git
+        path: ./certmanager
+        namespace: network
+      - name: metallb
+        repo: https://github.com/home-kops/k8s-network.git
+        path: ./metallb
+        namespace: network
+      - name: vault
+        repo: https://github.com/home-kops/k8s-vault.git
+        path: ./vault
+        namespace: vault
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{repo}}'
+        targetRevision: main
+        path: '{{path}}'
+        plugin:
+          name: argocd-vault-plugin-kustomize
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
