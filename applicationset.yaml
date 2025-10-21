@@ -27,6 +27,14 @@ spec:
         repo: https://github.com/home-kops/k8s-media.git
         path: ./calibre
         namespace: media
+      - name: loki
+        repo: https://github.com/home-kops/k8s-monitoring.git
+        path: ./loki
+        namespace: monitoring
+      - name: prometheus
+        repo: https://github.com/home-kops/k8s-monitoring.git
+        path: ./prometheus
+        namespace: monitoring
       - name: traefik
         repo: https://github.com/home-kops/k8s-network.git
         path: ./traefik
