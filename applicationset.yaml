@@ -27,6 +27,10 @@ spec:
         repo: https://github.com/home-kops/k8s-media.git
         path: ./calibre
         namespace: media
+      - name: homepage
+        repo: https://github.com/home-kops/k8s-misc.git
+        path: ./homepage
+        namespace: misc
       - name: alloy
         repo: https://github.com/home-kops/k8s-monitoring.git
         path: ./alloy
