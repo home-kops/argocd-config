@@ -43,6 +43,10 @@ spec:
         repo: https://github.com/home-kops/k8s-vault.git
         path: ./vault
         namespace: vault
+      - name: unsealer
+        repo: https://github.com/home-kops/k8s-vault.git
+        path: ./unsealer
+        namespace: vault
   template:
     metadata:
       name: '{{name}}'
