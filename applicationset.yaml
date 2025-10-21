@@ -71,6 +71,10 @@ spec:
         repo: https://github.com/home-kops/k8s-p2p.git
         path: ./qbittorrent
         namespace: p2p
+      - name: falco
+        repo: https://github.com/home-kops/k8s-sec.git
+        path: ./falco
+        namespace: sec
       - name: nfs-sc
         repo: https://github.com/home-kops/k8s-storage.git
         path: ./nfs
