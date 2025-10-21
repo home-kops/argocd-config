@@ -7,7 +7,7 @@ spec:
   generators:
   - list:
       elements:
-      - name: gha-scale-set
+      - name: arcrunners
         repo: https://github.com/home-kops/k8s-devops-tools.git
         path: ./arcrunners
         namespace: devops-tools
