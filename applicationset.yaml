@@ -27,6 +27,18 @@ spec:
         repo: https://github.com/home-kops/k8s-media.git
         path: ./calibre
         namespace: media
+      - name: alloy
+        repo: https://github.com/home-kops/k8s-monitoring.git
+        path: ./alloy
+        namespace: monitoring
+      - name: crowdsec
+        repo: https://github.com/home-kops/k8s-monitoring.git
+        path: ./crowdsec
+        namespace: monitoring
+      - name: grafana
+        repo: https://github.com/home-kops/k8s-monitoring.git
+        path: ./grafana
+        namespace: monitoring
       - name: loki
         repo: https://github.com/home-kops/k8s-monitoring.git
         path: ./loki
