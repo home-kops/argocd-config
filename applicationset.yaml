@@ -63,6 +63,14 @@ spec:
         repo: https://github.com/home-kops/k8s-network.git
         path: ./metallb
         namespace: network
+      - name: jackett
+        repo: https://github.com/home-kops/k8s-p2p.git
+        path: ./jackett
+        namespace: p2p
+      - name: qbittorrent
+        repo: https://github.com/home-kops/k8s-p2p.git
+        path: ./qbittorrent
+        namespace: p2p
       - name: nfs-sc
         repo: https://github.com/home-kops/k8s-storage.git
         path: ./nfs
