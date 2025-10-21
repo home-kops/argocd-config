@@ -63,6 +63,10 @@ spec:
         repo: https://github.com/home-kops/k8s-network.git
         path: ./metallb
         namespace: network
+      - name: nfs-sc
+        repo: https://github.com/home-kops/k8s-storage.git
+        path: ./nfs
+        namespace: storage
       - name: vault
         repo: https://github.com/home-kops/k8s-vault.git
         path: ./vault
