@@ -67,6 +67,10 @@ spec:
         repo: https://github.com/home-kops/k8s-p2p.git
         path: ./jackett
         namespace: p2p
+      - name: slskd
+        repo: https://github.com/home-kops/k8s-p2p.git
+        path: ./slskd
+        namespace: p2p
       - name: qbittorrent
         repo: https://github.com/home-kops/k8s-p2p.git
         path: ./qbittorrent
