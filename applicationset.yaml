@@ -27,6 +27,10 @@ spec:
         repo: https://github.com/home-kops/k8s-media.git
         path: ./cwa
         namespace: media
+      - name: cwa-downloader
+        repo: https://github.com/home-kops/k8s-media.git
+        path: ./cwa-downloader
+        namespace: media
       - name: homepage
         repo: https://github.com/home-kops/k8s-misc.git
         path: ./homepage
