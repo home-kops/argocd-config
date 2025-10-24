@@ -23,9 +23,9 @@ spec:
         repo: https://github.com/home-kops/k8s-media.git
         path: ./jellyfin
         namespace: media
-      - name: calibre
+      - name: cwa
         repo: https://github.com/home-kops/k8s-media.git
-        path: ./calibre
+        path: ./cwa
         namespace: media
       - name: homepage
         repo: https://github.com/home-kops/k8s-misc.git
