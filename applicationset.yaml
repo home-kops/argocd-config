@@ -55,6 +55,10 @@ spec:
         repo: https://github.com/home-kops/k8s-monitoring.git
         path: ./prometheus
         namespace: monitoring
+      - name: tempo
+        repo: https://github.com/home-kops/k8s-monitoring.git
+        path: ./tempo
+        namespace: monitoring
       - name: traefik
         repo: https://github.com/home-kops/k8s-network.git
         path: ./traefik
