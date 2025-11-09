@@ -51,6 +51,10 @@ spec:
         repo: https://github.com/home-kops/k8s-monitoring.git
         path: ./loki
         namespace: monitoring
+      - name: otel
+        repo: https://github.com/home-kops/k8s-monitoring.git
+        path: ./otel
+        namespace: monitoring
       - name: prometheus
         repo: https://github.com/home-kops/k8s-monitoring.git
         path: ./prometheus
