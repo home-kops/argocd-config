@@ -18,7 +18,7 @@ spec:
       source:
         repoURL: https://github.com/home-kops/k8s-p2p.git
         targetRevision: main
-        path: ./'{{name}}'
+        path: '{{name}}'
         plugin:
           name: argocd-vault-plugin-kustomize
       destination:
