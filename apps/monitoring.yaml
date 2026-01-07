@@ -7,7 +7,6 @@ spec:
   generators:
     - list:
         elements:
-          - name: alloy
           - name: crowdsec
           - name: grafana
           - name: loki

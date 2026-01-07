@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: alloytest
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/home-kops/k8s-homelab.git
+    targetRevision: main
+    path: './monitoring/alloy'
+    plugin:
+      name: argocd-vault-plugin-kustomize
+  destination:
+    namespace: monitoring
+    server: 'https://kubernetes.default.svc'
