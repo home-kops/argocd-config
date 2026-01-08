@@ -8,7 +8,7 @@ spec:
     - list:
         elements:
           - name: alloy
-          - name: crowdsec
+          # - name: crowdsec
           - name: grafana
           - name: loki
           - name: otel
