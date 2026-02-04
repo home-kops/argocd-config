@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring
+  namespace: devops-tools
+spec:
+  generators:
+    - list:
+        elements:
+          - name: alloy
+          # - name: crowdsec
+          - name: grafana
+          - name: loki
+          - name: otel
+          - name: prometheus
+          - name: tempo
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-homelab.git
+        targetRevision: main
+        path: './monitoring/{{name}}'
+        plugin:
+          name: argocd-vault-plugin-kustomize
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: monitoring
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        managedNamespaceMetadata:
+          labels:
+            pod-security.kubernetes.io/enforce: baseline
+            pod-security.kubernetes.io/enforce-version: latest
+            pod-security.kubernetes.io/audit: restricted
+            pod-security.kubernetes.io/audit-version: latest
+        syncOptions:
+          - CreateNamespace=true
