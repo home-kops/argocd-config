@@ -1,13 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: storage
+  name: default
   namespace: devops-tools
 spec:
   generators:
     - list:
         elements:
-          - name: nfs
+          - name: nfs-sc
+          - name: replicator
+          - name: sealed-secrets
   template:
     metadata:
       name: '{{name}}'
@@ -16,12 +18,12 @@ spec:
       source:
         repoURL: https://github.com/home-kops/k8s-homelab.git
         targetRevision: main
-        path: './storage/{{name}}'
+        path: './default/{{name}}'
         plugin:
           name: argocd-vault-plugin-kustomize
       destination:
         server: https://kubernetes.default.svc
-        namespace: storage
+        namespace: default
       syncPolicy:
         automated:
           prune: true

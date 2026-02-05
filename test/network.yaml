@@ -10,6 +10,7 @@ spec:
           - name: traefik
           - name: certmanager
           - name: metallb
+          - name: istio
   template:
     metadata:
       name: '{{name}}'
