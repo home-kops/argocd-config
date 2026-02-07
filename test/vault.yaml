@@ -15,7 +15,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/home-kops/k8s-homelab.git
-        targetRevision: main
+        targetRevision: refactor/bootstrap
         path: './vault/{{name}}'
         plugin:
           name: argocd-vault-plugin-kustomize
