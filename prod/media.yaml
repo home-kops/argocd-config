@@ -9,7 +9,7 @@ spec:
         elements:
           - name: jellyfin
           - name: cwa
-          - name: cwa-downloader
+          # - name: cwa-downloader
   template:
     metadata:
       name: '{{name}}'
