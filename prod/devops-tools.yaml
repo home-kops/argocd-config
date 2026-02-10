@@ -19,7 +19,7 @@ spec:
         targetRevision: main
         path: './devops-tools/{{name}}'
         plugin:
-          name: argocd-vault-plugin-kustomize
+          name: infra-envsubst
       destination:
         server: https://kubernetes.default.svc
         namespace: devops-tools
