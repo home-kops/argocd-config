@@ -9,7 +9,6 @@ spec:
         elements:
           - name: jellyfin
           - name: cwa
-          # - name: cwa-downloader
   template:
     metadata:
       name: '{{name}}'
@@ -20,7 +19,7 @@ spec:
         targetRevision: main
         path: './media/{{name}}'
         plugin:
-          name: argocd-vault-plugin-kustomize
+          name: infra-envsubst
       destination:
         server: https://kubernetes.default.svc
         namespace: media
