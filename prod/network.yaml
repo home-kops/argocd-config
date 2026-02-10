@@ -20,8 +20,6 @@ spec:
         repoURL: https://github.com/home-kops/k8s-homelab.git
         targetRevision: main
         path: './network/{{name}}'
-        plugin:
-          name: infra-envsubst
       destination:
         server: https://kubernetes.default.svc
         namespace: network
