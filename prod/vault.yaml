@@ -1,39 +1,57 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: vault
   namespace: devops-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: -3
 spec:
-  generators:
-    - list:
-        elements:
-          - name: vault
-            wave: -3
-          - name: unsealer
-            wave: -2
-  template:
-    metadata:
-      name: '{{name}}'
-      annotations:
-        argocd.argoproj.io/sync-wave: '{{wave}}'
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/home-kops/k8s-homelab.git
-        targetRevision: main
-        path: './vault/{{name}}'
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: vault
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        managedNamespaceMetadata:
-          labels:
-            pod-security.kubernetes.io/enforce: baseline
-            pod-security.kubernetes.io/enforce-version: latest
-            pod-security.kubernetes.io/audit: restricted
-            pod-security.kubernetes.io/audit-version: latest
-        syncOptions:
-          - CreateNamespace=true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vault
+  project: default
+  source:
+    path: ./vault/vault
+    repoURL: https://github.com/home-kops/k8s-homelab.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/audit: restricted
+        pod-security.kubernetes.io/audit-version: latest
+        pod-security.kubernetes.io/enforce: baseline
+        pod-security.kubernetes.io/enforce-version: latest
+    syncOptions:
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: unsealer
+  namespace: devops-tools
+  annotations:
+    argocd.argoproj.io/sync-wave: -2
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vault
+  project: default
+  source:
+    path: ./vault/unsealer
+    repoURL: https://github.com/home-kops/k8s-homelab.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/audit: restricted
+        pod-security.kubernetes.io/audit-version: latest
+        pod-security.kubernetes.io/enforce: baseline
+        pod-security.kubernetes.io/enforce-version: latest
+    syncOptions:
+    - CreateNamespace=true
