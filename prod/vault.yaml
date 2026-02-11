@@ -4,7 +4,6 @@ metadata:
   name: vault
   namespace: devops-tools
   annotations:
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
     argocd.argoproj.io/sync-wave: "-3"
 spec:
   destination:
@@ -34,6 +33,7 @@ metadata:
   name: unsealer
   namespace: devops-tools
   annotations:
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
     argocd.argoproj.io/sync-wave: "-2"
 spec:
   destination:
