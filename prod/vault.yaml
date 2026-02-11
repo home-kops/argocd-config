@@ -24,22 +24,3 @@ spec:
         pod-security.kubernetes.io/enforce-version: latest
     syncOptions:
     - CreateNamespace=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: unsealer
-  namespace: devops-tools
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: vault
-  project: default
-  source:
-    path: ./vault/unsealer
-    repoURL: https://github.com/home-kops/k8s-homelab.git
-    targetRevision: main
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
