@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: vault
   namespace: devops-tools
-  annotations:
-    argocd.argoproj.io/sync-wave: "-3"
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -32,8 +30,6 @@ kind: Application
 metadata:
   name: unsealer
   namespace: devops-tools
-  annotations:
-    argocd.argoproj.io/sync-wave: "-2"
 spec:
   destination:
     server: https://kubernetes.default.svc
