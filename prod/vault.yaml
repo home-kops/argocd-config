@@ -33,7 +33,7 @@ metadata:
   name: unsealer
   namespace: devops-tools
   annotations:
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
     argocd.argoproj.io/sync-wave: "-2"
 spec:
   destination:
@@ -48,11 +48,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    managedNamespaceMetadata:
-      labels:
-        pod-security.kubernetes.io/audit: restricted
-        pod-security.kubernetes.io/audit-version: latest
-        pod-security.kubernetes.io/enforce: baseline
-        pod-security.kubernetes.io/enforce-version: latest
-    syncOptions:
-    - CreateNamespace=true
+  backoffLimit: 1
