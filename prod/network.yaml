@@ -29,13 +29,13 @@ spec:
         name: istiod-default-validator
         namespace: network
         jqPathExpressions:
-        - .webhooks[0].failurePolicy
+        - .webhooks[] | select(.name == "validation.istio.io") | .failurePolicy
       - group: admissionregistration.k8s.io
         kind: ValidatingWebhookConfiguration
         name: istio-validator-network
         namespace: network
         jqPathExpressions:
-        - .webhooks[0].failurePolicy
+        - .webhooks[] | select(.name == "validation.istio.io") | .failurePolicy
       syncPolicy:
         automated:
           prune: true
