@@ -8,9 +8,23 @@ spec:
     - list:
         elements:
           - name: traefik
+            ignoreDifferences: []
           - name: certmanager
+            ignoreDifferences: []
           - name: metallb
+            ignoreDifferences: []
           - name: istio
+            ignoreDifferences:
+            - group: admissionregistration.k8s.io
+              kind: ValidatingWebhookConfiguration
+              name: istiod-default-validator
+              jqPathExpressions:
+              - .webhooks[] | select(.name == "validation.istio.io") | .failurePolicy
+            - group: admissionregistration.k8s.io
+              kind: ValidatingWebhookConfiguration
+              name: istio-validator-network
+              jqPathExpressions:
+              - .webhooks[] | select(.name == "rev.validation.istio.io") | .failurePolicy
   template:
     metadata:
       name: '{{name}}'
@@ -23,17 +37,7 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: network
-      ignoreDifferences:
-      - group: admissionregistration.k8s.io
-        kind: ValidatingWebhookConfiguration
-        name: istiod-default-validator
-        jqPathExpressions:
-        - .webhooks[] | select(.name == "validation.istio.io") | .failurePolicy
-      - group: admissionregistration.k8s.io
-        kind: ValidatingWebhookConfiguration
-        name: istio-validator-network
-        jqPathExpressions:
-        - .webhooks[] | select(.name == "rev.validation.istio.io") | .failurePolicy
+      ignoreDifferences: '{{ignoreDifferences}}'
       syncPolicy:
         automated:
           prune: true
