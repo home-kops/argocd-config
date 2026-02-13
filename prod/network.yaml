@@ -28,14 +28,14 @@ spec:
         kind: ValidatingWebhookConfiguration
         name: istiod-default-validator
         namespace: network
-        jsonPointers:
-        - /webhooks/0/failurePolicy
+        jqPathExpressions:
+        - .webhooks[0].failurePolicy
       - group: admissionregistration.k8s.io
         kind: ValidatingWebhookConfiguration
         name: istio-validator-network
         namespace: network
-        jsonPointers:
-        - /webhooks/0/failurePolicy
+        jqPathExpressions:
+        - .webhooks[0].failurePolicy
       syncPolicy:
         automated:
           prune: true
