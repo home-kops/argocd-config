@@ -37,7 +37,7 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: network
-      ignoreDifferences: '{{ignoreDifferences}}'
+      ignoreDifferences: {{ ignoreDifferences | toJson }}
       syncPolicy:
         automated:
           prune: true
