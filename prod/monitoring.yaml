@@ -37,3 +37,4 @@ spec:
             pod-security.kubernetes.io/audit-version: latest
         syncOptions:
           - CreateNamespace=true
+          - ServerSideApply=true
